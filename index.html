@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GIS & Remote Sensing Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: rgba(23, 32, 54, 0.7);
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --accent-green: #10b981;
+      --accent-cyan: #06b6d4;
+      --accent-orange: #f97316;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: radial-gradient(circle at 50% 0%, #1e1b4b 0%, var(--bg) 60%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 1.5rem;
+    }
+
+    .container {
+      max-width: 960px;
+      width: 100%;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.35rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--accent-green);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+      background: linear-gradient(135deg, #ffffff 30%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    p.subtitle {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 1.25rem;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      backdrop-filter: blur(12px);
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .card-q1::before {
+      background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan));
+    }
+
+    .card-q2::before {
+      background: linear-gradient(90deg, var(--accent-orange), #e11d48);
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+    }
+
+    .project-card:hover::before {
+      opacity: 1;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+
+    .card-q1 .tag { color: var(--accent-green); }
+    .card-q2 .tag { color: var(--accent-orange); }
+
+    .project-card h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: #fff;
+    }
+
+    .project-card p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.55;
+      margin-bottom: 1.5rem;
+    }
+
+    .meta-list {
+      list-style: none;
+      margin-bottom: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      font-size: 0.85rem;
+      color: #cbd5e1;
+    }
+
+    .meta-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .meta-list li span.bullet {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #475569;
+    }
+
+    .btn-action {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 0.85rem 1.25rem;
+      border-radius: 0.75rem;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.2s ease;
+    }
+
+    .card-q1:hover .btn-action {
+      background: var(--accent-green);
+      color: #064e3b;
+      border-color: transparent;
+    }
+
+    .card-q2:hover .btn-action {
+      background: var(--accent-orange);
+      color: #7c2d12;
+      border-color: transparent;
+    }
+
+    .arrow {
+      font-size: 1.2rem;
+      transition: transform 0.2s ease;
+    }
+
+    .project-card:hover .arrow {
+      transform: translateX(4px);
+    }
+
+    footer {
+      margin-top: 3.5rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #64748b;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <span class="badge">Student GIS Portfolio</span>
+      <h1>Spatial Analysis & Web Mapping</h1>
+      <p class="subtitle">Select a project below to launch the interactive map and explore the data.</p>
+    </header>
+
+    <div class="grid">
+      <!-- QUESTION 1 CARD -->
+      <a href="waste_map.html" class="project-card card-q1">
+        <div>
+          <span class="tag">Question 1 • Field Survey</span>
+          <h2>Waste-Bin Observations Map</h2>
+          <p>Interactive spatial distribution of municipal waste bins recorded via QField, featuring attached field photographs and attribution metadata.</p>
+          <ul class="meta-list">
+            <li><span class="bullet"></span> Source: QField mobile ground survey</li>
+            <li><span class="bullet"></span> Features: Clustered markers & photo popups</li>
+            <li><span class="bullet"></span> Engine: Python Folium</li>
+          </ul>
+        </div>
+        <div class="btn-action">
+          <span>Open Waste-Bin Map</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+
+      <!-- QUESTION 2 CARD -->
+      <a href="Chennai_CO_Exposure_Map.html" class="project-card card-q2">
+        <div>
+          <span class="tag">Question 2 • Earth Engine</span>
+          <h2>Chennai CO & Elderly Exposure</h2>
+          <p>Analysis of 2020 Sentinel-5P carbon monoxide column density and demographic exposure for residents aged 65+ in the highest-CO quartile.</p>
+          <ul class="meta-list">
+            <li><span class="bullet"></span> Source: Sentinel-5P TROPOMI & WorldPop</li>
+            <li><span class="bullet"></span> Features: Interactive raster & quartile overlays</li>
+            <li><span class="bullet"></span> Engine: Google Earth Engine / geemap</li>
+          </ul>
+        </div>
+        <div class="btn-action">
+          <span>Open CO Exposure Map</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+    </div>
+
+    <footer>
+      <p>Coursework Assignment • Spatial Analytics & Web Applications</p>
+    </footer>
+  </div>
+
+</body>
+</html>
