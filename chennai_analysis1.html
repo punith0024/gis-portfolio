@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Question 2 – Chennai Atmospheric CO & Elderly Exposure Analysis (2020)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: rgba(23, 32, 54, 0.75);
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --accent: #f97316;
+      --accent-subtle: rgba(249, 115, 22, 0.15);
+      --teal: #14b8a6;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: radial-gradient(circle at 50% 0%, #1e1b4b 0%, var(--bg) 65%);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 3rem 1.5rem;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      transition: color 0.2s;
+    }
+
+    .nav-back:hover {
+      color: var(--text);
+    }
+
+    header {
+      margin-bottom: 2.5rem;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--accent-subtle);
+      color: var(--accent);
+      border: 1px solid rgba(249, 115, 22, 0.3);
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 0.75rem;
+      background: linear-gradient(135deg, #ffffff 40%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 1.25rem;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(12px);
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    h2::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 1.2rem;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .media-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 1.5rem 0;
+    }
+
+    .media-container img {
+      max-width: 100%;
+      max-height: 520px;
+      border-radius: 0.75rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+
+    .caption {
+      margin-top: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .map-frame-wrapper {
+      width: 100%;
+      height: 550px;
+      border-radius: 0.75rem;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      margin: 1.5rem 0;
+    }
+
+    .map-frame-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+    }
+
+    th, td {
+      padding: 0.85rem 1rem;
+      text-align: left;
+    }
+
+    th {
+      background: rgba(255, 255, 255, 0.05);
+      color: #e2e8f0;
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid var(--border);
+    }
+
+    td {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      color: #cbd5e1;
+    }
+
+    tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .highlight-row td {
+      background: rgba(249, 115, 22, 0.1);
+      color: #ffedd5;
+      font-weight: 600;
+    }
+
+    .highlight-row td:first-child {
+      border-left: 3px solid var(--accent);
+    }
+
+    .discussion-text h3 {
+      font-size: 1.05rem;
+      color: #f1f5f9;
+      margin: 1.25rem 0 0.5rem 0;
+      font-weight: 600;
+    }
+
+    .discussion-text p {
+      font-size: 0.95rem;
+      color: #cbd5e1;
+      margin-bottom: 0.75rem;
+      text-align: justify;
+    }
+
+    .discussion-text ul {
+      margin-left: 1.25rem;
+      margin-bottom: 1rem;
+      color: #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    .discussion-text li {
+      margin-bottom: 0.4rem;
+    }
+
+    .metadata-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .meta-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      padding: 1rem;
+      border-radius: 0.75rem;
+    }
+
+    .meta-box span {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .meta-box strong {
+      font-size: 0.95rem;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <a href="index.html" class="nav-back">← Back to Portfolio Hub</a>
+
+    <header>
+      <h1>Chennai: 2020 Carbon Monoxide (CO) & Elderly Demographic Exposure</h1>
+      <p class="subtitle">Spatial assessment of Sentinel-5P tropospheric CO column density and elderly (65+) residential exposure in the top quartile.</p>
+    </header>
+
+    <div class="metadata-bar">
+      <div class="meta-box">
+        <span>Study Area</span>
+        <strong>Chennai District </strong>
+      </div>
+      <div class="meta-box">
+        <span>Population Dataset</span>
+        <strong>WorldPop 100m Age–Sex (2020)</strong>
+      </div>
+      <div class="meta-box">
+        <span>Exposure Threshold</span>
+        <strong>75th Percentile (0.039309 mol/m²)</strong>
+      </div>
+    </div>
+
+    <!-- 1. DYNAMIC TEMPORAL OUTPUT -->
+    <div class="card">
+      <h2>1. Dynamic Temporal Output (Monthly CO Animation)</h2>
+      <div class="media-container">
+        <img src="Chennai_2020_CO_Monthly.gif" alt="Monthly Tropospheric CO Column Dynamics over Chennai (2020)">
+        <p class="caption">Figure 1: Monthly mean tropospheric CO column density across Chennai in 2020 (Sentinel-5P OFFL, scale: 0.025 to 0.045 mol/m²).</p>
+      </div>
+    </div>
+
+<!-- 2. INTERACTIVE THEMATIC MAP -->
+<div class="card">
+  <h2>2. Interactive Exposure Map</h2>
+  <p style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 0.75rem;">
+    Explore the spatial distribution of 2020 annual mean CO, the highest-CO quartile boundary, and the resident elderly demographic.
+  </p>
+
+  <!-- Fallback direct launcher button -->
+  <div style="margin-bottom: 14px;">
+    <a href="Chennai_CO_Exposure_Map.html" target="_blank" 
+       style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; background: #f97316; color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 0.85rem; transition: background 0.2s;">
+      <span>↗ Open Interactive Map in Fullscreen Tab</span>
+    </a>
+  </div>
+
+  <!-- Map iframe container with explicit dimension safeguards -->
+  <div class="map-frame-wrapper" style="position: relative; width: 100%; height: 580px; min-height: 500px; border-radius: 0.75rem; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.1); background: #0f172a;">
+    <iframe 
+      src="Chennai_CO_Exposure_Map.html" 
+      title="Chennai CO Exposure Interactive Map"
+      width="100%" 
+      height="100%" 
+      style="border: none; display: block; width: 100%; height: 100%;"
+      loading="lazy">
+    </iframe>
+  </div>
+
+  <p class="caption" style="margin-top: 0.75rem; font-size: 0.85rem; color: #94a3b8; text-align: center;">
+    Map layers include: 2020 Annual Mean CO Column (mol/m²), Highest-CO Quartile Area Mask (≥ 75th percentile), and Exposed 65+ Population Density.
+  </p>
+</div>
+
+    <!-- 3. SUMMARY STATISTICS TABLE -->
+    <div class="card">
+      <h2>3. Quantitative Summary Statistics</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Indicator</th>
+            <th>Value</th>
+            <th>Unit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>City-wide Mean CO Column (2020)</td>
+            <td><strong>0.039115</strong></td>
+            <td>mol/m²</td>
+          </tr>
+          <tr>
+            <td>75th Percentile CO Threshold (Highest Quartile)</td>
+            <td><strong>0.039309</strong></td>
+            <td>mol/m²</td>
+          </tr>
+          <tr>
+            <td>Total City Administrative Area</td>
+            <td><strong>195.88</strong></td>
+            <td>km²</td>
+          </tr>
+          <tr>
+            <td>Area in Highest-CO Quartile</td>
+            <td><strong>49.95</strong></td>
+            <td>km²</td>
+          </tr>
+          <tr>
+            <td>Share of City Area in Highest-CO Zone</td>
+            <td><strong>25.50</strong></td>
+            <td>%</td>
+          </tr>
+          <tr>
+            <td>Total Estimated City Population (2020)</td>
+            <td><strong>3,914,793</strong></td>
+            <td>persons</td>
+          </tr>
+          <tr>
+            <td>Total Elderly Population (Age 65+)</td>
+            <td><strong>286,997</strong></td>
+            <td>persons</td>
+          </tr>
+          <tr>
+            <td>Elderly Share of Total City Population</td>
+            <td><strong>7.33</strong></td>
+            <td>%</td>
+          </tr>
+          <tr class="highlight-row">
+            <td>Elderly (65+) Residing in Highest-CO Quartile</td>
+            <td><strong>79,662</strong></td>
+            <td>persons</td>
+          </tr>
+          <tr class="highlight-row">
+            <td>Share of 65+ Population in Highest-CO Zone</td>
+            <td><strong>27.76</strong></td>
+            <td>%</td>
+          </tr>
+          <tr>
+            <td>Share of Total Population in Highest-CO Zone</td>
+            <td><strong>27.77</strong></td>
+            <td>%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 4. DISCUSSION & INTERPRETATION -->
+    <div class="card discussion-text">
+      <h2>4. Analytical Discussion & Interpretation</h2>
+
+      <h3>Spatial Distribution of Atmospheric Carbon Monoxide</h3>
+      <p>
+        The 2020 annual mean Sentinel-5P tropospheric carbon monoxide (CO) column density across Chennai averages <strong>0.039115 mol/m²</strong>, with the upper quartile (75th percentile) boundary established at <strong>0.039309 mol/m²</strong>. Areas falling in this top quartile span <strong>49.95 km²</strong>, or <strong>25.50%</strong> of the administrative district.
+      </p>
+      <p>
+        Spatially, the highest CO column burdens are clustered over the northern and north-western industrial belts (Ennore, Manali, and Thiruvottiyur) and major inland freight transit corridors. These sectors host thermal energy generation facilities, petrochemical refineries, fertilizer plants, and heavy diesel freight servicing the ports. In contrast, eastern coastal sectors exhibit lower column densities due to persistent maritime boundary layer circulation and sea-breeze dispersion into the Bay of Bengal.
+      </p>
+
+      <h3>Temporal Dynamics (Monthly Variation)</h3>
+      <p>
+        The monthly dynamic sequence illustrates marked seasonal shifts across 2020:
+      </p>
+      <ul>
+        <li><strong>Winter Pre-Monsoon (Jan–Feb):</strong> High column accumulations due to shallow nocturnal planetary boundary layer heights that suppress vertical mixing.</li>
+        <li><strong>Lockdown Contraction (Mar–May):</strong> Reductions in tropospheric column densities following COVID-19 national lockdowns that curtailed vehicular and commercial operations.</li>
+        <li><strong>Monsoon Dilution & Scavenging (Jun–Dec):</strong> Strong maritime wind advection and precipitation scavenging significantly lower observable column densities, followed by industrial and transit recovery toward late 2020.</li>
+      </ul>
+
+      <h3>Demographic Exposure Patterns (Residents Aged 65+)</h3>
+      <p>
+        According to WorldPop 2020 age-sex estimates, residents aged 65 and above account for <strong>286,997 individuals</strong> (7.33% of the city total). Among them, <strong>79,662 elderly individuals</strong> reside within the city's highest-CO quartile zone, representing an exposure share of <strong>27.76%</strong>.
+      </p>
+      <p>
+        The exposure share of the elderly cohort (27.76%) closely parallels that of the total population (27.77%), both exceeding the pure spatial area share of 25.50%. This indicates that the upper quartile is not restricted to vacant industrial tracts, but overlaps dense residential wards. Given age-associated reductions in cardiopulmonary reserve and higher prevalence of chronic vascular conditions, older adults residing in these zones face amplified environmental health risks.
+      </p>
+
+      <h3>Methodological & Data Limitations</h3>
+      <ul>
+        <li><strong>Column Density vs. Ground-Level Exposure:</strong> Sentinel-5P TROPOMI measures vertically integrated total atmospheric column density (mol/m²). It represents total gas between the ground and the top of the atmosphere, not surface breathing-zone concentrations (ppm or µg/m³). Results must strictly be interpreted as <em>residence within areas of high satellite-observed atmospheric column levels</em>, not personal physiological dosage.</li>
+        <li><strong>Spatial Resolution Mismatch:</strong> Sentinel-5P operates at a coarser native footprint (~5.5 × 3.5 km, gridded to ~1.1 km), whereas WorldPop data is disaggregated to 100 m grids. This spatial disparity assumes uniform atmospheric concentrations across individual 1.1 km cells, smoothing over street-level microclimates and localized street canyon effects.</li>
+        <li><strong>Cloud Screening & Seasonal Retrieval Bias:</strong> TROPOMI optical measurements require clear-sky conditions. Persistent cloud cover during Chennai's Northeast Monsoon (October–December) results in higher pixel rejection rates, potentially causing under-sampling during wet months.</li>
+      </ul>
+    </div>
+  </div>
+
+</body>
+</html>
